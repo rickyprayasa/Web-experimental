@@ -3,66 +3,982 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RSQUARE | Premium Google Spreadsheet Templates</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>RSQUARE - Premium Google Spreadsheet Templates</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rsquare: {
+                            orange: '#FF7A00',
+                            dark: '#1A1A1A',
+                            gray: '#6B7280',
+                            lightgray: '#F3F4F6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: scale(1.02);
+        }
+        
+        .btn-primary {
+            background-color: #FF7A00;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #E56C00;
+            transform: translateY(-1px);
+        }
+        
+        .navbar-fixed {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+    </style>
 </head>
-<body>
-    <header class="navbar">
-        <div class="container">
-            <div class="logo">
-                <h1>RSQUARE</h1>
-            </div>
-            <nav class="nav-links">
-                <a href="#products">Products</a>
-                <a href="#features">Features</a>
-                <a href="#pricing">Pricing</a>
-                <a href="#testimonials">Testimonials</a>
-                <a href="#contact" class="cta-button">Get Started</a>
-            </nav>
-            <div class="mobile-menu-btn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </header>
-
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Transform Your Spreadsheets with Premium Templates</h1>
-                <p>Boost productivity with our professionally designed Google Spreadsheet templates</p>
-                <div class="hero-buttons">
-                    <a href="#products" class="cta-button primary">Browse Templates</a>
-                    <a href="#demo" class="cta-button secondary">See Demo</a>
+<body class="bg-white text-rsquare-dark">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+            <div class="flex items-center">
+                <div class="text-2xl font-bold text-rsquare-dark flex items-center">
+                    <svg class="w-8 h-8 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="10" height="10" x="2" y="2" rx="2" fill="#FF7A00"/>
+                        <rect width="10" height="10" x="12" y="2" rx="2" fill="#1A1A1A"/>
+                        <rect width="10" height="10" x="2" y="12" rx="2" fill="#1A1A1A"/>
+                        <rect width="10" height="10" x="12" y="12" rx="2" fill="#6B7280"/>
+                    </svg>
+                    RSQUARE
                 </div>
             </div>
-            <div class="hero-image">
-                <img src="https://placehold.co/800x500" alt="Professional Google Spreadsheet dashboard showing financial analytics with orange accent colors" />
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#features" class="text-rsquare-dark hover:text-rsquare-orange transition-colors font-medium">Features</a>
+                <a href="#templates" class="text-rsquare-dark hover:text-rsquare-orange transition-colors font-medium">Templates</a>
+                <a href="#pricing" class="text-rsquare-dark hover:text-rsquare-orange transition-colors font-medium">Pricing</a>
+                <a href="#testimonials" class="text-rsquare-dark hover:text-rsquare-orange transition-colors font-medium">Testimonials</a>
+                <a href="#contact" class="text-rsquare-dark hover:text-rsquare-orange transition-colors font-medium">Contact</a>
+            </div>
+            <div class="hidden md:block">
+                <a href="#pricing" class="btn-primary text-white px-6 py-2 rounded-lg font-medium">Get Started</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-toggle" class="focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
             </div>
         </div>
-    </section>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white absolute w-full py-4 shadow-lg">
+            <div class="container mx-auto px-6 flex flex-col space-y-4">
+                <a href="#features" class="text-rsquare-dark hover:text-rsquare-orange transition-colors font-medium">Features</a>
+                <a href="#templates" class="text-rsquare-dark hover:text-rsquare-orange transition-colors font-medium">Templates</a>
+                <a href="#pricing" class="text-rsquare-dark hover:text-rsquare-orange transition-colors font-medium">Pricing</a>
+                <a href="#testimonials" class="text-rsquare-dark hover:text-rsquare-orange transition-colors font-medium">Testimonials</a>
+                <a href="#contact" class="text-rsquare-dark hover:text-rsquare-orange transition-colors font-medium">Contact</a>
+                <a href="#pricing" class="btn-primary text-white px-6 py-2 rounded-lg font-medium text-center">Get Started</a>
+            </div>
+        </div>
+    </nav>
 
-    <section id="products" class="products-section">
-        <div class="container">
-            <h2>Our Premium Templates</h2>
-            <p class="section-subtitle">Designed for efficiency and elegance</p>
-            
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://placehold.co/400x250" alt="Financial tracking spreadsheet template with charts and graphs" />
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 gradient-bg">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
+                        Transform Your Workflow with Premium Google Spreadsheet Templates
+                    </h1>
+                    <p class="text-lg text-gray-300 mb-8">
+                        Professionally designed templates to boost productivity, streamline data management, and elevate your business operations.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#templates" class="btn-primary text-white px-8 py-3 rounded-lg font-medium text-center">
+                            Explore Templates
+                        </a>
+                        <a href="#demo" class="bg-transparent border border-white text-white px-8 py-3 rounded-lg font-medium hover:bg-white hover:text-rsquare-dark transition-all text-center">
+                            Watch Demo
+                        </a>
                     </div>
-                    <h3>Financial Tracker</h3>
-                    <p>Complete financial monitoring system with automated reports</p>
-                    <a href="#" class="product-link">View Details →</a>
                 </div>
-                
-                <!-- Add more product cards similarly -->
+                <div class="md:w-1/2">
+                    <div class="relative">
+                        <div class="bg-white p-2 rounded-xl shadow-2xl">
+                            <svg class="w-full" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="600" height="400" rx="8" fill="#F8F9FA"/>
+                                <rect x="20" y="20" width="560" height="40" rx="4" fill="#E9ECEF"/>
+                                <rect x="40" y="32" width="120" height="16" rx="2" fill="#FF7A00"/>
+                                <rect x="20" y="80" width="120" height="300" rx="4" fill="#E9ECEF"/>
+                                <rect x="40" y="100" width="80" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="40" y="130" width="80" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="40" y="160" width="80" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="40" y="190" width="80" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="40" y="220" width="80" height="12" rx="2" fill="#FF7A00"/>
+                                <rect x="160" y="80" width="420" height="40" rx="4" fill="#E9ECEF"/>
+                                <rect x="180" y="94" width="60" height="12" rx="2" fill="#1A1A1A"/>
+                                <rect x="260" y="94" width="60" height="12" rx="2" fill="#1A1A1A"/>
+                                <rect x="340" y="94" width="60" height="12" rx="2" fill="#1A1A1A"/>
+                                <rect x="420" y="94" width="60" height="12" rx="2" fill="#1A1A1A"/>
+                                <rect x="500" y="94" width="60" height="12" rx="2" fill="#1A1A1A"/>
+                                <rect x="160" y="140" width="420" height="240" rx="4" fill="#FFFFFF"/>
+                                <rect x="180" y="160" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="260" y="160" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="340" y="160" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="420" y="160" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="500" y="160" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="180" y="190" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="260" y="190" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="340" y="190" width="60" height="12" rx="2" fill="#FF7A00"/>
+                                <rect x="420" y="190" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="500" y="190" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="180" y="220" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="260" y="220" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="340" y="220" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="420" y="220" width="60" height="12" rx="2" fill="#FF7A00"/>
+                                <rect x="500" y="220" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="180" y="250" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="260" y="250" width="60" height="12" rx="2" fill="#FF7A00"/>
+                                <rect x="340" y="250" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="420" y="250" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="500" y="250" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="180" y="280" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="260" y="280" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="340" y="280" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="420" y="280" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="500" y="280" width="60" height="12" rx="2" fill="#FF7A00"/>
+                                <rect x="180" y="310" width="60" height="12" rx="2" fill="#FF7A00"/>
+                                <rect x="260" y="310" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="340" y="310" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="420" y="310" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="500" y="310" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="180" y="340" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="260" y="340" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="340" y="340" width="60" height="12" rx="2" fill="#FF7A00"/>
+                                <rect x="420" y="340" width="60" height="12" rx="2" fill="#6B7280"/>
+                                <rect x="500" y="340" width="60" height="12" rx="2" fill="#6B7280"/>
+                            </svg>
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 bg-rsquare-orange text-white p-4 rounded-lg shadow-lg">
+                            <div class="text-xl font-bold">100+</div>
+                            <div class="text-sm">Premium Templates</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <script src="script.js"></script>
-</body>
-</html>
+    <!-- Trusted By Section -->
+    <section class="py-12 bg-rsquare-lightgray">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-8">
+                <p class="text-rsquare-gray font-medium">TRUSTED BY PROFESSIONALS WORLDWIDE</p>
+            </div>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+                <div class="grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all">
+                    <svg class="h-8" viewBox="0 0 100 30" fill="#1A1A1A">
+                        <path d="M20,10 C20,5.58172 16.4183,2 12,2 C7.58172,2 4,5.58172 4,10 C4,14.4183 7.58172,18 12,18 C16.4183,18 20,14.4183 20,10 Z M22,10 C22,15.5228 17.5228,20 12,20 C6.47715,20 2,15.5228 2,10 C2,4.47715 6.47715,0 12,0 C17.5228,0 22,4.47715 22,10 Z M35,10 L35,18 L33,18 L33,2 L35,2 L35,8 L43,8 L43,2 L45,2 L45,18 L43,18 L43,10 L35,10 Z M60,16 L60,18 L50,18 L50,2 L60,2 L60,4 L52,4 L52,9 L58,9 L58,11 L52,11 L52,16 L60,16 Z M75,4 L70,4 L70,18 L68,18 L68,4 L63,4 L63,2 L75,2 L75,4 Z M90,2 L90,18 L88,18 L88,11 L80,11 L80,18 L78,18 L78,2 L80,2 L80,9 L88,9 L88,2 L90,2 Z"/>
+                    </svg>
+                </div>
+                <div class="grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all">
+                    <svg class="h-8" viewBox="0 0 100 30" fill="#1A1A1A">
+                        <path d="M10,2 L20,2 C25.5228,2 30,6.47715 30,12 C30,17.5228 25.5228,22 20,22 L10,22 L10,2 Z M12,4 L12,20 L20,20 C24.4183,20 28,16.4183 28,12 C28,7.58172 24.4183,4 20,4 L12,4 Z M40,2 L42,2 L42,22 L40,22 L40,2 Z M55,2 L65,2 C70.5228,2 75,6.47715 75,12 C75,17.5228 70.5228,22 65,22 L55,22 L55,2 Z M57,4 L57,20 L65,20 C69.4183,20 73,16.4183 73,12 C73,7.58172 69.4183,4 65,4 L57,4 Z M85,2 L87,2 L87,20 L95,20 L95,22 L85,22 L85,2 Z"/>
+                    </svg>
+                </div>
+                <div class="grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all">
+                    <svg class="h-8" viewBox="0 0 100 30" fill="#1A1A1A">
+                        <path d="M15,2 L25,2 C27.7614,2 30,4.23858 30,7 L30,17 C30,19.7614 27.7614,22 25,22 L15,22 C12.2386,22 10,19.7614 10,17 L10,7 C10,4.23858 12.2386,2 15,2 Z M15,4 C13.3431,4 12,5.34315 12,7 L12,17 C12,18.6569 13.3431,20 15,20 L25,20 C26.6569,20 28,18.6569 28,17 L28,7 C28,5.34315 26.6569,4 25,4 L15,4 Z M45,2 L55,2 C57.7614,2 60,4.23858 60,7 L60,22 L58,22 L58,7 C58,5.34315 56.6569,4 55,4 L45,4 C43.3431,4 42,5.34315 42,7 L42,22 L40,22 L40,7 C40,4.23858 42.2386,2 45,2 Z M70,2 L80,2 C82.7614,2 85,4.23858 85,7 L85,17 C85,19.7614 82.7614,22 80,22 L70,22 C67.2386,22 65,19.7614 65,17 L65,7 C65,4.23858 67.2386,2 70,2 Z M70,4 C68.3431,4 67,5.34315 67,7 L67,17 C67,18.6569 68.3431,20 70,20 L80,20 C81.6569,20 83,18.6569 83,17 L83,7 C83,5.34315 81.6569,4 80,4 L70,4 Z"/>
+                    </svg>
+                </div>
+                <div class="grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all">
+                    <svg class="h-8" viewBox="0 0 100 30" fill="#1A1A1A">
+                        <path d="M12,2 L22,2 L22,4 L14,4 L14,10 L20,10 L20,12 L14,12 L14,20 L22,20 L22,22 L12,22 L12,2 Z M32,2 L42,2 L42,4 L34,4 L34,10 L40,10 L40,12 L34,12 L34,20 L42,20 L42,22 L32,22 L32,2 Z M52,2 L62,2 C64.7614,2 67,4.23858 67,7 L67,17 C67,19.7614 64.7614,22 62,22 L52,22 L52,2 Z M54,4 L54,20 L62,20 C63.6569,20 65,18.6569 65,17 L65,7 C65,5.34315 63.6569,4 62,4 L54,4 Z M77,2 L87,2 L87,4 L79,4 L79,10 L85,10 L85,12 L79,12 L79,20 L87,20 L87,22 L77,22 L77,2 Z"/>
+                    </svg>
+                </div>
+                <div class="grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all">
+                    <svg class="h-8" viewBox="0 0 100 30" fill="#1A1A1A">
+                        <path d="M10,2 L12,2 L12,20 L20,20 L20,22 L10,22 L10,2 Z M30,2 L32,2 L32,22 L30,22 L30,2 Z M45,2 L55,2 C57.7614,2 60,4.23858 60,7 L60,17 C60,19.7614 57.7614,22 55,22 L45,22 C42.2386,22 40,19.7614 40,17 L40,7 C40,4.23858 42.2386,2 45,2 Z M45,4 C43.3431,4 42,5.34315 42,7 L42,17 C42,18.6569 43.3431,20 45,20 L55,20 C56.6569,20 58,18.6569 58,17 L58,7 C58,5.34315 56.6569,4 55,4 L45,4 Z M70,2 L80,2 C82.7614,2 85,4.23858 85,7 L85,17 C85,19.7614 82.7614,22 80,22 L70,22 C67.2386,22 65,19.7614 65,17 L65,7 C65,4.23858 67.2386,2 70,2 Z M70,4 C68.3431,4 67,5.34315 67,7 L67,17 C67,18.6569 68.3431,20 70,20 L80,20 C81.6569,20 83,18.6569 83,17 L83,7 C83,5.34315 81.6569,4 80,4 L70,4 Z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Why Choose RSQUARE Templates?</h2>
+                <p class="text-rsquare-gray max-w-2xl mx-auto">Our premium Google Spreadsheet templates are designed to help you work smarter, not harder. Save time and elevate your data management with our professionally crafted solutions.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="feature-card bg-white p-8 rounded-xl shadow-lg transition-all duration-300">
+                    <div class="bg-rsquare-orange bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-rsquare-orange" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Professional Design</h3>
+                    <p class="text-rsquare-gray">Meticulously crafted templates with clean layouts, intuitive navigation, and professional aesthetics that elevate your data presentation.</p>
+                </div>
+                <div class="feature-card bg-white p-8 rounded-xl shadow-lg transition-all duration-300">
+                    <div class="bg-rsquare-orange bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-rsquare-orange" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Time-Saving Automation</h3>
+                    <p class="text-rsquare-gray">Built-in formulas, scripts, and automations that eliminate repetitive tasks and streamline your workflow for maximum efficiency.</p>
+                </div>
+                <div class="feature-card bg-white p-8 rounded-xl shadow-lg transition-all duration-300">
+                    <div class="bg-rsquare-orange bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-rsquare-orange" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                            <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Customizable Solutions</h3>
+                    <p class="text-rsquare-gray">Easily adaptable templates that can be tailored to your specific needs without requiring advanced technical knowledge.</p>
+                </div>
+                <div class="feature-card bg-white p-8 rounded-xl shadow-lg transition-all duration-300">
+                    <div class="bg-rsquare-orange bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-rsquare-orange" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Comprehensive Documentation</h3>
+                    <p class="text-rsquare-gray">Detailed guides and video tutorials to help you get the most out of your templates with minimal learning curve.</p>
+                </div>
+                <div class="feature-card bg-white p-8 rounded-xl shadow-lg transition-all duration-300">
+                    <div class="bg-rsquare-orange bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-rsquare-orange" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Data Visualization</h3>
+                    <p class="text-rsquare-gray">Transform raw data into meaningful insights with pre-configured charts, graphs, and dashboards that make analysis simple.</p>
+                </div>
+                <div class="feature-card bg-white p-8 rounded-xl shadow-lg transition-all duration-300">
+                    <div class="bg-rsquare-orange bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-rsquare-orange" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Premium Support</h3>
+                    <p class="text-rsquare-gray">Access to our dedicated support team and regular updates to ensure your templates continue to meet your evolving business needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Templates Section -->
+    <section id="templates" class="py-20 bg-rsquare-lightgray">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Our Premium Templates</h2>
+                <p class="text-rsquare-gray max-w-2xl mx-auto">Discover our collection of professionally designed Google Spreadsheet templates for various business needs.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl">
+                    <div class="h-48 bg-gradient-to-r from-rsquare-orange to-yellow-500 relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-24 h-24 text-white opacity-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM14 11a1 1 0 011 1v1h1a1 1 0 110 2h-1v1a1 1 0 11-2 0v-1h-1a1 1 0 110-2h1v-1a1 1 0 011-1z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold">Financial Dashboard</h3>
+                            <span class="bg-rsquare-orange bg-opacity-10 text-rsquare-orange text-sm font-medium px-3 py-1 rounded-full">Popular</span>
+                        </div>
+                        <p class="text-rsquare-gray mb-6">Comprehensive financial tracking with automated calculations, budget forecasting, and visual reports.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-rsquare-dark font-bold">$49.99</span>
+                            <a href="#pricing" class="text-rsquare-orange hover:text-rsquare-dark transition-colors font-medium flex items-center">
+                                Learn More
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl">
+                    <div class="h-48 bg-gradient-to-r from-blue-500 to-purple-500 relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-24 h-24 text-white opacity-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold">Project Management</h3>
+                            <span class="bg-blue-100 text-blue-600 text-sm font-medium px-3 py-1 rounded-full">New</span>
+                        </div>
+                        <p class="text-rsquare-gray mb-6">Track tasks, deadlines, resources, and progress with Gantt charts and automated status updates.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-rsquare-dark font-bold">$39.99</span>
+                            <a href="#pricing" class="text-rsquare-orange hover:text-rsquare-dark transition-colors font-medium flex items-center">
+                                Learn More
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl">
+                    <div class="h-48 bg-gradient-to-r from-green-500 to-teal-500 relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-24 h-24 text-white opacity-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"></path>
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold">Expense Tracker</h3>
+                            <span class="bg-green-100 text-green-600 text-sm font-medium px-3 py-1 rounded-full">Best Seller</span>
+                        </div>
+                        <p class="text-rsquare-gray mb-6">Monitor personal or business expenses with categorization, tax calculations, and spending analysis.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-rsquare-dark font-bold">$29.99</span>
+                            <a href="#pricing" class="text-rsquare-orange hover:text-rsquare-dark transition-colors font-medium flex items-center">
+                                Learn More
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl">
+                    <div class="h-48 bg-gradient-to-r from-purple-500 to-pink-500 relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-24 h-24 text-white opacity-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold">Marketing Analytics</h3>
+                            <span class="bg-purple-100 text-purple-600 text-sm font-medium px-3 py-1 rounded-full">Pro</span>
+                        </div>
+                        <p class="text-rsquare-gray mb-6">Track campaign performance, ROI calculations, and audience insights with customizable dashboards.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-rsquare-dark font-bold">$59.99</span>
+                            <a href="#pricing" class="text-rsquare-orange hover:text-rsquare-dark transition-colors font-medium flex items-center">
+                                Learn More
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl">
+                    <div class="h-48 bg-gradient-to-r from-red-500 to-pink-500 relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-24 h-24 text-white opacity-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold">Inventory Management</h3>
+                            <span class="bg-red-100 text-red-600 text-sm font-medium px-3 py-1 rounded-full">Essential</span>
+                        </div>
+                        <p class="text-rsquare-gray mb-6">Track stock levels, orders, suppliers, and automate reorder points with detailed reporting.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-rsquare-dark font-bold">$44.99</span>
+                            <a href="#pricing" class="text-rsquare-orange hover:text-rsquare-dark transition-colors font-medium flex items-center">
+                                Learn More
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl">
+                    <div class="h-48 bg-gradient-to-r from-indigo-500 to-blue-500 relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg class="w-24 h-24 text-white opacity-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold">HR Management</h3>
+                            <span class="bg-indigo-100 text-indigo-600 text-sm font-medium px-3 py-1 rounded-full">Team</span>
+                        </div>
+                        <p class="text-rsquare-gray mb-6">Employee records, time tracking, performance reviews, and leave management in one place.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-rsquare-dark font-bold">$49.99</span>
+                            <a href="#pricing" class="text-rsquare-orange hover:text-rsquare-dark transition-colors font-medium flex items-center">
+                                Learn More
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="#pricing" class="btn-primary text-white px-8 py-3 rounded-lg font-medium inline-block">View All Templates</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <h2 class="text-3xl font-bold mb-6">See Our Templates in Action</h2>
+                    <p class="text-rsquare-gray mb-6">Watch how our premium Google Spreadsheet templates can transform your workflow and boost productivity. Our templates are designed to be intuitive and powerful, helping you manage data more effectively.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-rsquare-orange bg-opacity-10 p-2 rounded-full mr-4">
+                                <svg class="w-5 h-5 text-rsquare-orange" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-medium mb-1">Easy to Use</h4>
+                                <p class="text-rsquare-gray text-sm">Intuitive design with clear instructions and minimal learning curve.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-rsquare-orange bg-opacity-10 p-2 rounded-full mr-4">
+                                <svg class="w-5 h-5 text-rsquare-orange" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-medium mb-1">Fully Customizable</h4>
+                                <p class="text-rsquare-gray text-sm">Adapt templates to your specific needs with simple modifications.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-rsquare-orange bg-opacity-10 p-2 rounded-full mr-4">
+                                <svg class="w-5 h-5 text-rsquare-orange" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-medium mb-1">Time-Saving Automations</h4>
+                                <p class="text-rsquare-gray text-sm">Built-in formulas and scripts that eliminate repetitive tasks.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <button id="play-demo" class="flex items-center text-rsquare-orange hover:text-rsquare-dark transition-colors font-medium">
+                            <div class="bg-rsquare-orange bg-opacity-10 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-rsquare-orange" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <span>Watch Demo Video (2:45)</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-rsquare-dark rounded-xl overflow-hidden shadow-2xl">
+                        <div id="video-placeholder" class="aspect-w-16 aspect-h-9 bg-rsquare-dark flex items-center justify-center cursor-pointer">
+                            <div class="w-full h-0 pb-[56.25%] relative">
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <svg class="w-20 h-20 text-white opacity-80" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="currentColor" fill-opacity="0.2"/>
+                                        <path d="M16 12L10 16.3301V7.66987L16 12Z" fill="currentColor"/>
+                                    </svg>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                                    <div class="absolute bottom-6 left-6 text-white text-left">
+                                        <h3 class="text-xl font-bold">RSQUARE Templates Demo</h3>
+                                        <p class="text-sm opacity-80">See how our templates can transform your workflow</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-rsquare-lightgray">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Simple, Transparent Pricing</h2>
+                <p class="text-rsquare-gray max-w-2xl mx-auto">Choose the plan that works best for your needs. All plans include lifetime access to templates and free updates.</p>
+            </div>
+            <div class="flex flex-col lg:flex-row gap-8 max-w-5xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex-1 transition-all duration-300 hover:shadow-xl">
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-4">Starter</h3>
+                        <div class="flex items-baseline mb-6">
+                            <span class="text-4xl font-bold">$99</span>
+                            <span class="text-rsquare-gray ml-2">/ one-time</span>
+                        </div>
+                        <p class="text-rsquare-gray mb-6">Perfect for individuals and small businesses just getting started.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-rsquare-orange mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span>5 Premium Templates</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-rsquare-orange mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span>Basic Documentation</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-rsquare-orange mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span>Email Support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-rsquare-orange mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span>Free Updates for 1 Year</span>
+                            </li>
+                        </ul>
+                        <button class="w-full py-3 border border-rsquare-orange text-rsquare-orange font-medium rounded-lg hover:bg-rsquare-orange hover:text-white transition-colors">Get Started</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex-1 transition-all duration-300 hover:shadow-xl relative">
+                    <div class="absolute top-0 right-0 bg-rsquare-orange text-white text-xs font-bold px-3 py-1 uppercase">Most Popular</div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-4">Professional</h3>
+                        <div class="flex items-baseline mb-6">
+                            <span class="text-4xl font-bold">$199</span>
+                            <span class="text-rsquare-gray ml-2">/ one-time</span>
+                        </div>
+                        <p class="text-rsquare-gray mb-6">Ideal for growing businesses and professional users.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-rsquare-orange mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span>15 Premium Templates</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-rsquare-orange mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span>Advanced Documentation</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-rsquare-orange mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span>Priority Email Support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-rsquare-orange mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span>Free Updates for Life</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-rsquare-orange mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span>Video Tutorials</span>
+                            </li>
+                        </ul>
+                        <button class="w-full py-3 bg-rsquare-orange text-white font-medium rounded-lg hover:bg-rsquare-dark transition-colors">Get Started</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex-1 transition-all duration-300 hover:shadow-xl">
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-4">Enterprise</h3>
+                        <div class="flex items-baseline mb-6">
+                            <span class="text-4xl font-bold">$399</span>
+                            <span class="text-rsquare-gray ml-2">/ one-time</span>
+                        </div>
+                        <p class="text-rsquare-gray mb-6">Complete solution for large businesses and teams.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-rsquare-orange mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span>All Premium Templates</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-rsquare-orange mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span>Comprehensive Documentation</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-rsquare-orange mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span>24/7 Priority Support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-rsquare-orange mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span>Free Updates for Life</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-rsquare-orange mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span>Custom Template Development</span>
+                            </li>
+                        </ul>
+                        <button class="w-full py-3 border border-rsquare-orange text-rsquare-orange font-medium rounded-lg hover:bg-rsquare-orange hover:text-white transition-colors">Get Started</button>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 bg-white p-6 rounded-xl shadow-lg max-w-3xl mx-auto">
+                <div class="flex items-center">
+                    <div class="bg-rsquare-orange bg-opacity-10 p-4 rounded-full mr-6">
+                        <svg class="w-6 h-6 text-rsquare-orange" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-1">Need a custom solution?</h4>
+                        <p class="text-rsquare-gray">Contact us for custom template development tailored to your specific business needs.</p>
+                    </div>
+                    <div class="ml-auto">
+                        <a href="#contact" class="text-rsquare-orange hover:text-rsquare-dark transition-colors font-medium">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">What Our Customers Say</h2>
+                <p class="text-rsquare-gray max-w-2xl mx-auto">Don't just take our word for it. Here's what professionals and businesses have to say about RSQUARE templates.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="testimonial-card bg-white p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="text-yellow-400 flex">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-rsquare-gray mb-6">"RSQUARE's financial dashboard template has completely transformed how I manage my business finances. The automations save me hours every week, and the visual reports make it easy to understand our financial position at a glance."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                            JD
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">John Doe</h4>
+                            <p class="text-rsquare-gray text-sm">Small Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card bg-white p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="text-yellow-400 flex">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-rsquare-gray mb-6">"As a marketing manager, I need to track multiple campaigns simultaneously. The RSQUARE marketing analytics template has been a game-changer for our team. It's intuitive, customizable, and the support team is incredibly responsive."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-r from-pink-500 to-red-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                            JS
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Jane Smith</h4>
+                            <p class="text-rsquare-gray text-sm">Marketing Manager</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card bg-white p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="text-yellow-400 flex">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-rsquare-gray mb-6">"We implemented the HR management template across our entire organization, and it has streamlined our processes significantly. The documentation is thorough, and the template is incredibly flexible to adapt to our specific needs."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                            RJ
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Robert Johnson</h4>
+                            <p class="text-rsquare-gray text-sm">HR Director</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-rsquare-lightgray">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
+                <p class="text-rsquare-gray max-w-2xl mx-auto">Find answers to common questions about our templates and services.</p>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <div class="space-y-6">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                        <button class="faq-toggle w-full text-left p-6 focus:outline-none flex justify-between items-center">
+                            <span class="font-bold">How do I access my templates after purchase?</span>
+                            <svg class="faq-icon w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-6">
+                            <p class="text-rsquare-gray">After completing your purchase, you'll receive an email with download links to all your templates. You can also access them anytime through your account dashboard on our website.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                        <button class="faq-toggle w-full text-left p-6 focus:outline-none flex justify-between items-center">
+                            <span class="font-bold">Can I customize the templates to fit my specific needs?</span>
+                            <svg class="faq-icon w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-6">
+                            <p class="text-rsquare-gray">Yes, all our templates are fully customizable. You can modify colors, layouts, formulas, and any other elements to suit your specific requirements. We also provide detailed documentation on how to make these customizations.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                        <button class="faq-toggle w-full text-left p-6 focus:outline-none flex justify-between items-center">
+                            <span class="font-bold">Do I need advanced spreadsheet knowledge to use these templates?</span>
+                            <svg class="faq-icon w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-6">
+                            <p class="text-rsquare-gray">No, our templates are designed to be user-friendly and accessible to users of all skill levels. Basic spreadsheet knowledge is helpful, but we provide comprehensive documentation and video tutorials to guide you through using and customizing the templates.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                        <button class="faq-toggle w-full text-left p-6 focus:outline-none flex justify-between items-center">
+                            <span class="font-bold">What kind of support do you offer if I have questions?</span>
+                            <svg class="faq-icon w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-6">
+                            <p class="text-rsquare-gray">We offer email support for all customers, with priority support for Professional and Enterprise plan users. Our support team typically responds within 24 hours (faster for priority support). We also have an extensive knowledge base and video tutorials available.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                        <button class="faq-toggle w-full text-left p-6 focus:outline-none flex justify-between items-center">
+                            <span class="font-bold">Can I use these templates for multiple businesses or clients?</span>
+                            <svg class="faq-icon w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-6">
+                            <p class="text-rsquare-gray">Standard licenses allow use for a single business. If you're an agency or consultant working with multiple clients, we offer special multi-client licenses. Please contact our sales team for more information on these options.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                        <button class="faq-toggle w-full text-left p-6 focus:outline-none flex justify-between items-center">
+                            <span class="font-bold">Do you offer refunds if I'm not satisfied?</span>
+                            <svg class="faq-icon w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-6">
+                            <p class="text-rsquare-gray">Yes, we offer a 30-day money-back guarantee. If you're not completely satisfied with your purchase, contact our support team within 30 days for a full refund. We may ask for feedback to help us improve our products.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="bg-gradient-to-r from-rsquare-dark to-rsquare-gray rounded-2xl overflow-hidden shadow-xl">
+                <div class="p-12 md:p-16 flex flex-col md:flex-row items-center">
+                    <div class="md:w-2/3 mb-8 md:mb-0">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Transform Your Workflow?</h2>
+                        <p class="text-gray-300 text-lg mb-8">Join thousands of professionals who are saving time and improving productivity with RSQUARE templates.</p>
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                            <a href="#pricing" class="btn-primary text-white px-8 py-3 rounded-lg font-medium text-center">
+                                Get Started Today
+                            </a>
+                            <a href="#contact" class="bg-transparent border border-white text-white px-8 py-3 rounded-lg font-medium hover:bg-white hover:text-rsquare-dark transition-all text-center">
+                                Contact Sales
+                            </a>
+                        </div>
+                    </div>
+                    <div class="md:w-1/3 flex justify-center">
+                        <div class="relative">
+                            <svg class="w-64 h-64 text-white opacity-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"></path>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-white text-center">
+                                    <div class="text-4xl font-bold mb-2">100+</div>
+                                    <div class="text-lg">Premium Templates</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-rsquare-lightgray">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Get in Touch</h2>
+                <p class="text-rsquare-gray max-w-2xl mx-auto">Have questions or need a custom solution? Our team is here to help.</p>
+            </div>
+            <div class="flex flex-col md:flex-row gap-8 max-w-5xl mx-auto">
+                <div class="md:w-1/2">
+                    <form class="bg-white p-8 rounded-xl shadow-lg">
+                        <div class="mb-6">
+                            <label for="name" class="block text-rsquare-dark font-medium mb-2">Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rsquare-orange focus:border-transparent" placeholder="Your name">
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block text-rsquare-dark font-medium mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rsquare-orange focus:border-transparent" placeholder="your@email.com">
+                        </div>
+                        <div class="mb-6">
+                            <label for="subject" class="block text-rsquare-dark font-medium mb-2">Subject</label>
+                            <select id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rsquare-orange focus:border-transparent">
+                                <option value="" selected disabled>Select a subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="support">Technical Support</option>
+                                <option value="sales">Sales Question</option>
+                                <option value="custom">Custom Template Request</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-rsquare-dark font-medium mb-2">Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rsquare-orange focus:border-transparent" placeholder="Your message..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3 bg-rsquare-orange text-white font-medium rounded-lg hover:bg-rsquare-dark transition-colors">Send Message</button>
+                        <p class="text-sm text-rsquare-gray mt-4 text-center">We'll get back to you within 24 hours.</p>
+                    </form>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-white p-8 rounded-xl shadow-lg h-full">
+                        <h3 class="text-xl font-bold mb-6">Contact Information</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-rsquare-orange bg-opacity-10 p-3 rounded-full mr-4">
+                                    <svg class="w-6 h-6 text-rsquare-orange" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Email</h4>
+                                    <p class="text-rsquare-gray">support@rsquare.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-rsquare-orange bg-opacity-10 p-3 rounded-full mr-4">
+                                    <svg class="w-6 h-6 text-rsquare-orange" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Phone</h4>
+                                    <p class="text-rsquare-gray">+1 (555) 123-4567</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-rsquare-orange bg-opacity-10 p-3 rounded-full mr-4">
+                                    <svg class="w-6 h-6 text-rsquare-orange" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'966ae5c374046097',t:'MTc1Mzc3NDA4Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
