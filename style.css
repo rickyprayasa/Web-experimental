@@ -6,7 +6,7 @@
     --primary-color: #FFA500; /* Oranye */
     --dark-color: #1a1a1a;    /* Hitam pekat */
     --light-color: #ffffff;   /* Putih */
-    --gray-color: #808080;     /* Abu-abu */
+    --gray-color: #b0b0b0;     /* Abu-abu (dibuat lebih terang) */
     --bg-color: #111111;       /* Background utama (gelap) */
 }
 
@@ -25,7 +25,7 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg-color);
     color: var(--light-color);
-    overflow-x: hidden; /* Mencegah horizontal scroll */
+    overflow-x: hidden;
 }
 
 .container {
@@ -125,7 +125,7 @@ body {
     display: flex;
     align-items: center;
     padding-top: 100px;
-    position: relative;
+    position: relative; /* Penting untuk z-index blob */
     overflow: hidden;
 }
 
@@ -174,31 +174,34 @@ body {
     border-radius: 10px;
 }
 
-/* Glassmorphism Effect */
+/* PERBAIKAN: Glassmorphism Effect dibuat lebih terang */
 .glass-effect {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1); /* Dulu 0.05, sekarang lebih terang */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Border lebih jelas */
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-/* Decorative Blob */
+/* PERBAIKAN: Decorative Blob dibuat lebih terlihat */
 .decorative-blob {
     position: absolute;
-    width: 500px;
-    height: 500px;
+    width: 600px;   /* Ukuran diperbesar */
+    height: 600px;
     background: radial-gradient(circle, var(--primary-color), transparent 60%);
-    opacity: 0.15;
-    filter: blur(100px);
-    top: 10%;
-    right: 5%;
-    z-index: -1;
+    opacity: 0.3;   /* Opacity ditingkatkan dari 0.15 */
+    filter: blur(80px); /* Blur dikurangi dari 100px */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Diposisikan di tengah agar lebih impactful */
+    z-index: -1;      /* Akan berada di belakang konten hero, tapi di depan background body */
 }
 
 /* Sections General Styling */
 .features-section, .templates-section {
     padding: 6rem 0;
+    position: relative; /* Menjaga konten tetap di atas blob */
+    z-index: 1;
 }
 
 .section-title {
@@ -299,26 +302,28 @@ body {
     color: var(--gray-color);
 }
 
-/* Sparkle Effect */
+/* PERBAIKAN: Sparkle Effect & Animasi */
 .sparkle {
     position: absolute;
-    width: 6px;
-    height: 6px;
+    width: 8px; /* Diperbesar sedikit */
+    height: 8px;
     background: var(--primary-color);
     border-radius: 50%;
     z-index: 9999;
     pointer-events: none;
-    animation: sparkle-anim 0.8s forwards;
     box-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+    /* PERBAIKAN: Animasi sekarang menggunakan variabel dari JS */
+    animation: sparkle-anim 0.8s forwards;
 }
 
 @keyframes sparkle-anim {
-    0% {
+    from {
         transform: scale(1);
         opacity: 1;
     }
-    100% {
-        transform: scale(2.5) translate(15px, -15px);
+    to {
+        /* Menggunakan variabel --x dan --y yang di set oleh JavaScript */
+        transform: scale(0) translate(var(--x, 0), var(--y, 0));
         opacity: 0;
     }
 }
@@ -355,7 +360,7 @@ body {
 
 @media (max-width: 768px) {
     .navbar nav {
-        display: none; /* Sembunyikan untuk mobile, bisa ditambahkan hamburger menu */
+        display: none;
     }
     .hero-content h1 {
         font-size: 2.5rem;
