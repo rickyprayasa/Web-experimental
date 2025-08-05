@@ -1,73 +1,79 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. EFEK KETIK (TEXT GENERATE EFFECT)
-    const headline = document.getElementById('hero-headline');
-    const textToType = "Visualisasikan Data, Ungkapkan Cerita.";
-    let charIndex = 0;
+    // 1. EXPANDABLE CARDS LOGIC
+    const cards = document.querySelectorAll('.expandable-card');
+    const contentArea = document.getElementById('expanded-content-area');
+    const expandedImg = document.getElementById('expanded-image');
+    const expandedTitle = document.getElementById('expanded-title');
+    const expandedDesc = document.getElementById('expanded-description');
 
-    function typeEffect() {
-        if (charIndex < textToType.length) {
-            headline.textContent += textToType.charAt(charIndex);
-            charIndex++;
-            setTimeout(typeEffect, 60); // Kecepatan ketik
-        } else {
-            // Tambahkan kursor berkedip setelah selesai
-            headline.style.borderRight = '3px solid var(--primary-color)';
-            setInterval(() => {
-                headline.style.borderRightColor = headline.style.borderRightColor === 'transparent' ? 'var(--primary-color)' : 'transparent';
-            }, 500);
-        }
+    function updateExpandedContent(card) {
+        expandedImg.src = card.dataset.image;
+        expandedTitle.textContent = card.dataset.title;
+        expandedDesc.textContent = card.dataset.description;
+        contentArea.classList.add('visible');
     }
-    // Mulai animasi setelah jeda singkat
-    setTimeout(typeEffect, 500);
 
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            document.querySelector('.expandable-card.active').classList.remove('active');
+            card.classList.add('active');
+            updateExpandedContent(card);
+        });
+    });
+    // Initial load
+    updateExpandedContent(document.querySelector('.expandable-card.active'));
 
-    // 2. EFEK 3D CARD
-    const cards = document.querySelectorAll('.card-3d-container');
-
-    cards.forEach(cardContainer => {
-        const card = cardContainer.querySelector('.card-3d');
-        const glare = document.createElement('div'); // Opsi untuk efek kilau
-        glare.className = 'card-glare';
-        // card.appendChild(glare); // Uncomment jika ingin menambahkan efek kilau
-
-        cardContainer.addEventListener('mousemove', (e) => {
+    // 2. CARD SPOTLIGHT LOGIC
+    const spotlightCards = document.querySelectorAll('.card-spotlight');
+    spotlightCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            const width = rect.width;
-            const height = rect.height;
-
-            const rotateY = ((x / width) - 0.5) * -20; // Max rotasi 10 derajat
-            const rotateX = ((y / height) - 0.5) * 20;  // Max rotasi 10 derajat
-
+            
             requestAnimationFrame(() => {
-                card.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg) scale(1.05)`;
-            });
-        });
-
-        cardContainer.addEventListener('mouseleave', () => {
-             requestAnimationFrame(() => {
-                card.style.transform = 'rotateY(0) rotateX(0) scale(1)';
+                card.style.setProperty('--x', `${x}px`);
+                card.style.setProperty('--y', `${y}px`);
             });
         });
     });
+
+    // 3. SPARKLES EFFECT
+    document.body.addEventListener('mousemove', (e) => {
+        if (Math.random() > 0.95) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            document.body.appendChild(sparkle);
+
+            sparkle.style.left = `${e.clientX + window.scrollX}px`;
+            sparkle.style.top = `${e.clientY + window.scrollY}px`;
+
+            setTimeout(() => {
+                sparkle.remove();
+            }, 800);
+        }
+    });
     
-    // 3. Animasi fade-in untuk section saat di-scroll (opsional, tapi bagus)
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+    // 4. FLOATING DOCK ACTIVE STATE ON SCROLL
+    const sections = document.querySelectorAll('section[id]');
+    const dockItems = document.querySelectorAll('.dock-item');
+    
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= sectionTop - 60) {
+                current = section.getAttribute('id');
             }
         });
-    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.features-section, .templates-section').forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        observer.observe(section);
+        dockItems.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('href').includes(current)) {
+                item.classList.add('active');
+            }
+        });
     });
 
 });
