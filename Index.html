@@ -3,107 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RSQUARE - Template Spreadsheet Generasi Baru</title>
+    <title>RSQUARE - Revolusi Template Spreadsheet</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-</head>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> </head>
 <body>
 
-    <header class="navbar">
-        <div class="container">
-            <a href="#" class="logo">RSQUARE</a>
-            <nav>
-                <a href="#features">Fitur</a>
-                <a href="#templates">Template</a>
-            </nav>
-        </div>
+    <header class="floating-dock">
+        <a href="#hero" class="dock-item active">
+            <span class="dock-icon">🏠</span>
+            <span class="dock-text">Home</span>
+        </a>
+        <a href="#features" class="dock-item">
+            <span class="dock-icon">✨</span>
+            <span class="dock-text">Fitur</span>
+        </a>
+        <a href="#templates" class="dock-item">
+            <span class="dock-icon">📊</span>
+            <span class="dock-text">Template</span>
+        </a>
     </header>
 
     <main>
         <section id="hero" class="hero-section">
+            <div class="gemini-effect-container">
+                <svg width="100%" height="100%" preserveAspectRatio="xMidYMid slice" class="gemini-svg">
+                    <path class="gemini-path" d="M 10,90 Q 150,20 300,90 T 600,90" stroke-width="2" />
+                    <path class="gemini-path" d="M 10,150 Q 200,250 400,150 T 700,150" stroke-width="2" />
+                </svg>
+            </div>
             <div class="container hero-content">
-                <h1 id="hero-headline"></h1>
-                <p class="fade-in">Template Google Spreadsheet yang tidak hanya berfungsi, tapi juga menginspirasi. Didesain untuk profesional modern.</p>
-                <a href="#templates" class="btn-moving-border fade-in">
-                    Jelajahi Koleksi
-                </a>
+                <h1 class="text-flip-container">
+                    Ubah <span data-text="Data"></span> Menjadi <span data-text="Desain"></span>, Ubah <span data-text="Angka"></span> Menjadi <span data-text="Wawasan"></span>.
+                </h1>
+                <p>Selamat datang di RSQUARE, tempat spreadsheet tidak lagi membosankan.</p>
+            </div>
+        </section>
+
+        <section class="marquee-section">
+            <div class="marquee-3d">
+                <div class="marquee-row">
+                    <span>Finance Tracker</span><span>•</span><span>Project Dashboard</span><span>•</span><span>Content Calendar</span><span>•</span><span>Inventory Management</span>
+                </div>
+                 <div class="marquee-row">
+                    <span>Finance Tracker</span><span>•</span><span>Project Dashboard</span><span>•</span><span>Content Calendar</span><span>•</span><span>Inventory Management</span>
+                </div>
             </div>
         </section>
 
         <section id="features" class="features-section">
             <div class="container">
-                <h2 class="section-title">Dibangun untuk Performa dan Estetika</h2>
-                <div class="bento-grid">
-                    <div class="bento-item item-1">
-                        <div class="item-content">
-                            <h3>Desain Intuitif</h3>
-                            <p>Antarmuka yang bersih membuat Anda fokus pada data, bukan cara menggunakannya.</p>
-                        </div>
-                    </div>
-                    <div class="bento-item item-2">
-                         <div class="item-content">
-                            <h3>Dashboard Interaktif</h3>
-                            <p>Visualisasikan metrik kunci Anda secara real-time.</p>
-                        </div>
-                    </div>
-                    <div class="bento-item item-3">
-                         <div class="item-content">
-                            <h3>Formula Otomatis</h3>
-                            <p>Hemat waktu berjam-jam dengan kalkulasi yang sudah kami siapkan.</p>
-                        </div>
-                    </div>
-                    <div class="bento-item item-4">
-                        <div class="item-content">
-                            <h3>Elegan & Profesional</h3>
-                            <p>Presentasikan data Anda dengan percaya diri. Setiap piksel dirancang dengan teliti untuk tampilan yang premium dan berkelas.</p>
-                        </div>
+                <h2 class="section-title">Fitur yang Mengubah Cara Anda Bekerja</h2>
+                <div class="expandable-cards-container">
+                    <div class="expandable-card" data-title="Desain Premium" data-description="Setiap template dirancang dengan estetika modern untuk presentasi data yang memukau." data-image="https://via.placeholder.com/400x300/111111/FFFFFF?text=Premium+Design"></div>
+                    <div class="expandable-card active" data-title="Dashboard Interaktif" data-description="Analisis data menjadi lebih cepat dan intuitif dengan dashboard yang merespon setiap klik Anda." data-image="https://via.placeholder.com/400x300/FFA500/FFFFFF?text=Interactive+Dashboard"></div>
+                    <div class="expandable-card" data-title="Otomatisasi Cerdas" data-description="Lupakan input manual yang melelahkan. Biarkan formula cerdas kami yang bekerja." data-image="https://via.placeholder.com/400x300/808080/FFFFFF?text=Smart+Automation"></div>
+                </div>
+                 <div id="expanded-content-area" class="expanded-content">
+                    <img id="expanded-image" src="" alt="Feature Image">
+                    <div class="expanded-text">
+                        <h3 id="expanded-title"></h3>
+                        <p id="expanded-description"></p>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <section id="templates" class="templates-section">
             <div class="container">
-                <h2 class="section-title">Template Unggulan</h2>
-                <div class="templates-grid">
-                    <div class="card-3d-container">
-                        <div class="card-3d">
-                            <img src="https://via.placeholder.com/400x300/FFA500/FFFFFF?text=Financial+Tracker" alt="Financial Tracker">
-                            <div class="card-content">
-                                <h4>Personal Finance Tracker</h4>
-                                <span class="price">Rp 150.000</span>
-                            </div>
-                        </div>
+                <h2 class="section-title">Jelajahi Pilihan Template</h2>
+                <div class="spotlight-grid">
+                    <div class="card-spotlight">
+                        <h4>Personal Finance Tracker</h4>
+                        <p>Kelola keuangan pribadi dengan mudah dan visual.</p>
                     </div>
-                    <div class="card-3d-container">
-                        <div class="card-3d">
-                            <img src="https://via.placeholder.com/400x300/1A1A1A/FFFFFF?text=Project+Manager" alt="Project Management">
-                             <div class="card-content">
-                                <h4>Project Management Dashboard</h4>
-                                <span class="price">Rp 250.000</span>
-                            </div>
-                        </div>
+                    <div class="card-spotlight">
+                        <h4>Project Management Dashboard</h4>
+                        <p>Pantau progres proyek Anda seperti seorang profesional.</p>
                     </div>
-                    <div class="card-3d-container">
-                        <div class="card-3d">
-                            <img src="https://via.placeholder.com/400x300/808080/FFFFFF?text=Content+Calendar" alt="Content Calendar">
-                             <div class="card-content">
-                                <h4>Social Media Content Calendar</h4>
-                                <span class="price">Rp 175.000</span>
-                            </div>
-                        </div>
+                    <div class="card-spotlight">
+                        <h4>Social Media Content Calendar</h4>
+                        <p>Rencanakan dan eksekusi strategi konten Anda.</p>
                     </div>
                 </div>
             </div>
         </section>
+
     </main>
 
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 RSQUARE. Terinspirasi oleh keindahan data.</p>
-        </div>
+        <p>&copy; 2025 RSQUARE. Dibuat dengan Inter dan Kopi.</p>
     </footer>
 
     <script src="script.js"></script>
