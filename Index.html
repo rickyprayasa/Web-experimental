@@ -1,146 +1,253 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RSQUARE - Premium Google Spreadsheet Templates</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-black text-white overflow-x-hidden">
-    <nav class="fixed top-0 w-full z-50 bg-white/10 backdrop-blur-xl border-b border-white/20 shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center space-x-2">
-                    <div class="w-8 h-8 bg-brand-orange rounded-lg flex items-center justify-center">
-                        <span class="text-black font-bold text-lg">R²</span>
-                    </div>
-                    <span class="text-xl font-bold">RSQUARE</span>
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="hover:text-brand-orange transition-colors">Home</a>
-                    <a href="#templates" class="hover:text-brand-orange transition-colors">Templates</a>
-                    <a href="#features" class="hover:text-brand-orange transition-colors">Features</a>
-                    <a href="#pricing" class="hover:text-brand-orange transition-colors">Pricing</a>
-                </div>
-                <button class="bg-brand-orange hover:bg-orange-600 text-black px-6 py-2 rounded-full font-semibold transition-all pulse-orange">
-                    Get Started
-                </button>
-            </div>
-        </div>
-    </nav>
+    <title>React.js vs Next.js</title>
+    <style>
+        /* CSS untuk Styling */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-    <section id="home" class="min-h-screen gradient-bg flex items-center relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-20 left-10 w-20 h-20 border border-brand-orange rounded-full floating"></div>
-            <div class="absolute top-40 right-20 w-16 h-16 bg-brand-orange/20 rounded-lg floating" style="animation-delay: 1s;"></div>
-            <div class="absolute bottom-40 left-1/4 w-12 h-12 border border-white rounded-full floating" style="animation-delay: 2s;"></div>
-        </div>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 2rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .framework-column {
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .react-col {
+            background-color: #e6f7ff;
+            border: 2px solid #91d5ff;
+        }
+
+        .next-col {
+            background-color: #f6f6f6;
+            border: 2px solid #d9d9d9;
+        }
+
+        .framework-column h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: left;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .card-header {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
         
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h1 class="text-5xl lg:text-7xl font-bold mb-6 leading-tight">
-                        Level Up Your
-                        <span class="text-gradient block">Spreadsheet Game</span>
-                    </h1>
-                    <p class="text-xl text-brand-gray mb-8 leading-relaxed">
-                        Premium Google Spreadsheet templates designed for Gen-Z entrepreneurs, students, and creators. 
-                        Make data beautiful, organized, and Instagram-worthy! ✨
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <button class="bg-brand-orange hover:bg-orange-600 text-black px-8 py-4 rounded-full font-semibold text-lg transition-all glow-effect">
-                            Browse Templates 🚀
-                        </button>
-                        <button class="border border-brand-orange text-brand-orange hover:bg-brand-orange hover:text-black px-8 py-4 rounded-full font-semibold text-lg transition-all">
-                            Watch Demo
-                        </button>
+        .card-header span:last-child {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .card-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            padding: 0 1rem;
+        }
+
+        .feature-card.active .card-content {
+            max-height: 500px; /* Adjust as needed */
+            padding: 1rem;
+            border-top: 1px solid #eee;
+            margin-top: 1rem;
+        }
+        
+        .feature-card.active .card-header span:last-child {
+            transform: rotate(180deg);
+        }
+
+        .summary {
+            margin-top: 3rem;
+            padding: 1.5rem;
+            background-color: #fffbe6;
+            border: 2px solid #ffe58f;
+            border-radius: 12px;
+            text-align: left;
+        }
+        
+        .summary h3 {
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>React.js vs Next.js</h1>
+        <div class="comparison-grid">
+            <div class="framework-column react-col">
+                <h2>🦖 React.js</h2>
+                <div class="feature-card" onclick="toggleCard(this)">
+                    <div class="card-header">
+                        <span>Rendering</span>
+                        <span>&#9660;</span>
+                    </div>
+                    <div class="card-content">
+                        <strong>Client-Side Rendering (CSR)</strong> secara default. Artinya, browser mengunduh file JavaScript minimal, lalu JavaScript tersebut mengambil alih untuk merender seluruh halaman. Pengguna mungkin melihat halaman kosong sesaat.
                     </div>
                 </div>
-                <div class="relative">
-                    <div class="liquid-glass rounded-2xl p-8">
-                        <div class="grid grid-cols-4 gap-2 mb-4">
-                            <div class="h-8 bg-brand-orange/80 rounded"></div>
-                            <div class="h-8 bg-brand-gray/60 rounded"></div>
-                            <div class="h-8 bg-brand-orange/60 rounded"></div>
-                            <div class="h-8 bg-brand-gray/40 rounded"></div>
-                        </div>
-                        <div class="grid grid-cols-3 gap-2 mb-4">
-                            <div class="h-6 bg-brand-gray/40 rounded"></div>
-                            <div class="h-6 bg-brand-orange/40 rounded"></div>
-                            <div class="h-6 bg-brand-gray/60 rounded"></div>
-                        </div>
-                        <div class="grid grid-cols-5 gap-1">
-                            <div class="h-4 bg-brand-orange/30 rounded"></div>
-                            <div class="h-4 bg-brand-gray/30 rounded"></div>
-                            <div class="h-4 bg-brand-orange/50 rounded"></div>
-                            <div class="h-4 bg-brand-gray/50 rounded"></div>
-                            <div class="h-4 bg-brand-orange/40 rounded"></div>
-                        </div>
-                        <div class="absolute -top-4 -right-4 bg-brand-orange text-black px-3 py-1 rounded-full text-sm font-semibold">
-                            Premium ✨
-                        </div>
+                <div class="feature-card" onclick="toggleCard(this)">
+                    <div class="card-header">
+                        <span>Routing</span>
+                        <span>&#9660;</span>
+                    </div>
+                    <div class="card-content">
+                        Tidak ada bawaan. Kamu perlu menginstal dan mengkonfigurasi library tambahan seperti <strong>React Router</strong> untuk mengatur navigasi antar halaman di dalam aplikasi (Single Page Application).
+                    </div>
+                </div>
+                <div class="feature-card" onclick="toggleCard(this)">
+                    <div class="card-header">
+                        <span>Data Fetching</span>
+                        <span>&#9660;</span>
+                    </div>
+                    <div class="card-content">
+                        Dilakukan di sisi klien (browser). Biasanya menggunakan hook <code>useEffect</code> dan <code>fetch</code> API atau library seperti <strong>Axios</strong>. Data diambil setelah komponen di-render pertama kali.
+                    </div>
+                </div>
+                <div class="feature-card" onclick="toggleCard(this)">
+                    <div class="card-header">
+                        <span>SEO</span>
+                        <span>&#9660;</span>
+                    </div>
+                    <div class="card-content">
+                        Kurang optimal secara default. Karena konten di-render oleh JavaScript, mesin pencari seperti Google harus menjalankan JavaScript untuk mengindeks halaman, yang bisa lebih lambat dan kurang efektif.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="framework-column next-col">
+                <h2>🚀 Next.js</h2>
+                <div class="feature-card" onclick="toggleCard(this)">
+                    <div class="card-header">
+                        <span>Rendering</span>
+                        <span>&#9660;</span>
+                    </div>
+                    <div class="card-content">
+                        <strong>Hybrid Rendering.</strong> Mendukung <strong>Server-Side Rendering (SSR)</strong> dan <strong>Static Site Generation (SSG)</strong> secara bawaan. Halaman HTML sudah jadi saat dikirim dari server, sehingga lebih cepat tampil dan bagus untuk SEO. Bisa juga CSR per komponen.
+                    </div>
+                </div>
+                <div class="feature-card" onclick="toggleCard(this)">
+                    <div class="card-header">
+                        <span>Routing</span>
+                        <span>&#9660;</span>
+                    </div>
+                    <div class="card-content">
+                        <strong>Sudah termasuk (built-in)</strong> dan berbasis file-system. Cukup buat file di dalam folder <code>/pages</code> atau <code>/app</code>, dan Next.js akan otomatis membuatkan rute untukmu. Sangat mudah dan cepat.
+                    </div>
+                </div>
+                <div class="feature-card" onclick="toggleCard(this)">
+                    <div class="card-header">
+                        <span>Data Fetching</span>
+                        <span>&#9660;</span>
+                    </div>
+                    <div class="card-content">
+                        Sangat fleksibel. Kamu bisa mengambil data di server sebelum halaman di-render (dengan <code>getServerSideProps</code> atau React Server Components) atau saat proses build (dengan <code>getStaticProps</code>). Ini membuat data sudah tersedia saat halaman dimuat.
+                    </div>
+                </div>
+                <div class="feature-card" onclick="toggleCard(this)">
+                    <div class="card-header">
+                        <span>SEO</span>
+                        <span>&#9660;</span>
+                    </div>
+                    <div class="card-content">
+                        <strong>Sangat SEO-friendly.</strong> Karena halaman sudah di-render di server (SSR/SSG), mesin pencari bisa langsung membaca konten HTML lengkap tanpa perlu menjalankan JavaScript. Ini adalah keunggulan utama Next.js.
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <section id="templates" class="py-20 bg-brand-dark">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl lg:text-5xl font-bold mb-6">
-                    <span class="text-gradient">Trending Templates</span>
-                </h2>
-                <p class="text-xl text-brand-gray max-w-3xl mx-auto">
-                    Handcrafted templates that make your data pop! Perfect for budgeting, planning, tracking, and more.
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="glass-effect rounded-2xl p-6 card-hover">
-                    <div class="h-48 bg-gradient-to-br from-brand-orange/20 to-brand-gray/20 rounded-xl mb-6 flex items-center justify-center"><span class="text-4xl">📊</span></div>
-                    <h3 class="text-xl font-semibold mb-3">Budget Tracker Pro</h3>
-                    <p class="text-brand-gray mb-4">Track your expenses like a boss with this aesthetic budget planner.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-brand-orange font-bold text-lg">$12</span>
-                        <button class="bg-brand-orange/20 hover:bg-brand-orange hover:text-black text-brand-orange px-4 py-2 rounded-full transition-all">Preview</button>
-                    </div>
-                </div>
-                <div class="glass-effect rounded-2xl p-6 card-hover">
-                    <div class="h-48 bg-gradient-to-br from-brand-orange/20 to-brand-gray/20 rounded-xl mb-6 flex items-center justify-center"><span class="text-4xl">📅</span></div>
-                    <h3 class="text-xl font-semibold mb-3">Content Calendar</h3>
-                    <p class="text-brand-gray mb-4">Plan your social media content with this Instagram-worthy planner.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-brand-orange font-bold text-lg">$15</span>
-                        <button class="bg-brand-orange/20 hover:bg-brand-orange hover:text-black text-brand-orange px-4 py-2 rounded-full transition-all">Preview</button>
-                    </div>
-                </div>
-                <div class="glass-effect rounded-2xl p-6 card-hover">
-                    <div class="h-48 bg-gradient-to-br from-brand-orange/20 to-brand-gray/20 rounded-xl mb-6 flex items-center justify-center"><span class="text-4xl">🎯</span></div>
-                    <h3 class="text-xl font-semibold mb-3">Goal Crusher</h3>
-                    <p class="text-brand-gray mb-4">Manifest your dreams with this motivational goal tracking template.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-brand-orange font-bold text-lg">$10</span>
-                        <button class="bg-brand-orange/20 hover:bg-brand-orange hover:text-black text-brand-orange px-4 py-2 rounded-full transition-all">Preview</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <button class="bg-brand-orange hover:bg-orange-600 text-black px-8 py-4 rounded-full font-semibold text-lg transition-all">View All Templates →</button>
-            </div>
+        <div class="summary">
+            <h3>💡 Kapan Pakai yang Mana?</h3>
+            <p>Gunakan <strong>React.js</strong> jika kamu membangun aplikasi web yang sangat interaktif dan tidak terlalu bergantung pada SEO, seperti dashboard internal atau aplikasi yang dilindungi login.</p>
+            <p>Gunakan <strong>Next.js</strong> jika kamu butuh performa load yang cepat, SEO yang kuat, atau keduanya. Sangat ideal untuk website publik seperti blog, situs e-commerce, dan landing page.</p>
         </div>
-    </section>
+    </div>
 
-    <section id="features" class="py-20 bg-black">
-        </section>
-    <section id="pricing" class="py-20 bg-brand-dark">
-        </section>
-    <footer class="bg-black border-t border-brand-gray/20 py-12">
-        </footer>
+    <script>
+        // JavaScript untuk Interaktivitas
+        function toggleCard(cardElement) {
+            // Menutup semua kartu lain di kolom yang sama agar hanya satu yang terbuka
+            const column = cardElement.closest('.framework-column');
+            const allCards = column.querySelectorAll('.feature-card');
+            
+            allCards.forEach(card => {
+                if (card !== cardElement && card.classList.contains('active')) {
+                    card.classList.remove('active');
+                }
+            });
 
-    <script src="script.js" defer></script>
+            // Toggle kartu yang diklik
+            cardElement.classList.toggle('active');
+        }
+    </script>
+
 </body>
 </html>
