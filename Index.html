@@ -68,17 +68,21 @@
             overflow-x: auto;
             font-family: 'Fira Code', monospace;
             font-size: 0.9rem;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
         
-        .token.comment { color: #a0aec0; }
-        .token.keyword { color: #f9a8d4; }
-        .token.function { color: #81e6d9; }
-        .token.punctuation { color: #a0aec0; }
-        .token.tag { color: #f9a8d4; }
-        .token.attr-name { color: #a7f3d0; }
-        .token.attr-value { color: #fef08a; }
-        .token.operator { color: #f9a8d4; }
-        .token.constant { color: #fde68a; }
+        .token-comment { color: #a0aec0; }
+        .token-keyword { color: #f9a8d4; }
+        .token-function { color: #81e6d9; }
+        .token-punctuation { color: #a0aec0; }
+        .token-tag { color: #f9a8d4; }
+        .token-attr-name { color: #a7f3d0; }
+        .token-attr-value { color: #fef08a; }
+        .token-operator { color: #f9a8d4; }
+        .token-constant { color: #fde68a; }
+        .token-plain-text { color: #e2e8f0; }
+
 
         .feature-card {
             background: #f7fafc;
@@ -159,7 +163,34 @@
             <p>Kode ini berjalan sepenuhnya di browser pengguna (client-side).</p>
             
             <h3>Contoh Kode</h3>
-            <pre><code class="language-jsx"></code></pre>
+            <pre><code><span class="token-keyword">import</span> <span class="token-plain-text">React, { useState, useEffect }</span> <span class="token-keyword">from</span> <span class="token-attr-value">'react'</span><span class="token-punctuation">;</span>
+
+<span class="token-keyword">function</span> <span class="token-function">TodoList</span><span class="token-punctuation">() {</span>
+  <span class="token-keyword">const</span> <span class="token-plain-text">[todos, setTodos]</span> <span class="token-operator">=</span> <span class="token-function">useState</span><span class="token-punctuation">([]);</span>
+  <span class="token-keyword">const</span> <span class="token-plain-text">[loading, setLoading]</span> <span class="token-operator">=</span> <span class="token-function">useState</span><span class="token-punctuation">(</span><span class="token-constant">true</span><span class="token-punctuation">);</span>
+
+  <span class="token-function">useEffect</span><span class="token-punctuation">(()</span> <span class="token-operator">=></span> <span class="token-punctuation">{</span>
+    <span class="token-function">fetch</span><span class="token-punctuation">(</span><span class="token-attr-value">'https://jsonplaceholder.typicode.com/todos?_limit=5'</span><span class="token-punctuation">)</span>
+      <span class="token-punctuation">.</span><span class="token-function">then</span><span class="token-punctuation">(</span><span class="token-plain-text">res</span> <span class="token-operator">=></span> <span class="token-plain-text">res.</span><span class="token-function">json</span><span class="token-punctuation">())</span>
+      <span class="token-punctuation">.</span><span class="token-function">then</span><span class="token-punctuation">(</span><span class="token-plain-text">data</span> <span class="token-operator">=></span> <span class="token-punctuation">{</span>
+        <span class="token-function">setTodos</span><span class="token-punctuation">(</span><span class="token-plain-text">data</span><span class="token-punctuation">);</span>
+        <span class="token-function">setLoading</span><span class="token-punctuation">(</span><span class="token-constant">false</span><span class="token-punctuation">);</span>
+      <span class="token-punctuation">});</span>
+  <span class="token-punctuation">}, []);</span>
+
+  <span class="token-keyword">if</span> <span class="token-punctuation">(</span><span class="token-plain-text">loading</span><span class="token-punctuation">) {</span>
+    <span class="token-keyword">return</span> <span class="token-plain-text">&lt;p&gt;Loading...&lt;/p&gt;</span><span class="token-punctuation">;</span>
+  <span class="token-punctuation">}</span>
+
+  <span class="token-keyword">return</span> <span class="token-punctuation">(</span>
+    <span class="token-plain-text">&lt;ul&gt;</span>
+      <span class="token-plain-text">{todos.</span><span class="token-function">map</span><span class="token-punctuation">(</span><span class="token-plain-text">todo</span> <span class="token-operator">=></span> <span class="token-punctuation">(</span>
+        <span class="token-plain-text">&lt;li key={todo.id}&gt;{todo.title}&lt;/li&gt;</span>
+      <span class="token-punctuation">))}</span>
+    <span class="token-plain-text">&lt;/ul&gt;</span>
+  <span class="token-punctuation">);</span>
+<span class="token-punctuation">}</span>
+</code></pre>
             
             <h3>Bedah Kode</h3>
             <div class="feature-card" onclick="toggleCard(this)">
@@ -202,7 +233,25 @@
             <p>Kode ini (secara default) berjalan di server, bukan di browser.</p>
 
             <h3>Contoh Kode</h3>
-            <pre><code class="language-jsx"></code></pre>
+            <pre><code><span class="token-comment">// app/todos/page.js (di Next.js App Router)</span>
+
+<span class="token-keyword">async</span> <span class="token-keyword">function</span> <span class="token-function">getTodos</span><span class="token-punctuation">() {</span>
+  <span class="token-keyword">const</span> <span class="token-plain-text">res</span> <span class="token-operator">=</span> <span class="token-keyword">await</span> <span class="token-function">fetch</span><span class="token-punctuation">(</span><span class="token-attr-value">'https://jsonplaceholder.typicode.com/todos?_limit=5'</span><span class="token-punctuation">, {</span> <span class="token-attr-name">cache</span><span class="token-punctuation">:</span> <span class="token-attr-value">'no-store'</span> <span class="token-punctuation">});</span>
+  <span class="token-keyword">return</span> <span class="token-plain-text">res.</span><span class="token-function">json</span><span class="token-punctuation">();</span>
+<span class="token-punctuation">}</span>
+
+<span class="token-keyword">export</span> <span class="token-keyword">default</span> <span class="token-keyword">async</span> <span class="token-keyword">function</span> <span class="token-function">TodosPage</span><span class="token-punctuation">() {</span>
+  <span class="token-keyword">const</span> <span class="token-plain-text">todos</span> <span class="token-operator">=</span> <span class="token-keyword">await</span> <span class="token-function">getTodos</span><span class="token-punctuation">();</span>
+
+  <span class="token-keyword">return</span> <span class="token-punctuation">(</span>
+    <span class="token-plain-text">&lt;ul&gt;</span>
+      <span class="token-plain-text">{todos.</span><span class="token-function">map</span><span class="token-punctuation">(</span><span class="token-plain-text">todo</span> <span class="token-operator">=></span> <span class="token-punctuation">(</span>
+        <span class="token-plain-text">&lt;li key={todo.id}&gt;{todo.title}&lt;/li&gt;</span>
+      <span class="token-punctuation">))}</span>
+    <span class="token-plain-text">&lt;/ul&gt;</span>
+  <span class="token-punctuation">);</span>
+<span class="token-punctuation">}</span>
+</code></pre>
             
             <h3>Bedah Kode</h3>
             <div class="feature-card" onclick="toggleCard(this)">
