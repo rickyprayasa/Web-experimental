@@ -3,26 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>React.js vs Next.js Explained</title>
+    <title>Bedah Kode: React vs Next</title>
     <style>
-        /* CSS (Tidak ada perubahan dari sebelumnya, tetap sama) */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        /* CSS yang sama untuk konsistensi UI */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap');
 
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f0f2f5;
             color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
             padding: 2rem;
-            box-sizing: border-box;
         }
 
         .container {
             width: 100%;
-            max-width: 1000px;
+            max-width: 1200px; /* Lebar agar muat code */
+            margin: 0 auto;
             background: white;
             border-radius: 16px;
             box-shadow: 0 8px 32px rgba(0,0,0,0.1);
@@ -34,63 +30,74 @@
             font-size: 2.5rem;
             font-weight: 700;
             color: #1a202c;
-            margin-bottom: 2rem;
+            margin-bottom: 0.5rem;
         }
         
-        h2.section-title {
-            font-size: 1.8rem;
-            margin-top: 4rem;
-            margin-bottom: 1.5rem;
-            border-top: 1px solid #e2e8f0;
-            padding-top: 2rem;
+        .subtitle {
+            font-size: 1.1rem;
+            color: #718096;
+            margin-bottom: 2.5rem;
         }
 
         .comparison-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 2rem;
-        }
-
-        .framework-column {
-            padding: 1.5rem;
-            border-radius: 12px;
-        }
-
-        .react-col {
-            background-color: #e6f7ff;
-            border: 2px solid #91d5ff;
-        }
-
-        .next-col {
-            background-color: #f6f6f6;
-            border: 2px solid #d9d9d9;
-        }
-
-        .framework-column h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-card {
-            background: white;
-            border-radius: 8px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
             text-align: left;
         }
 
+        .code-column h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .code-column h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+
+        pre {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .token.comment { color: #a0aec0; }
+        .token.keyword { color: #f9a8d4; }
+        .token.function { color: #81e6d9; }
+        .token.punctuation { color: #a0aec0; }
+        .token.tag { color: #f9a8d4; }
+        .token.attr-name { color: #a7f3d0; }
+        .token.attr-value { color: #fef08a; }
+        .token.operator { color: #f9a8d4; }
+        .token.constant { color: #fde68a; }
+
+        .feature-card {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
         .card-header {
             font-weight: 600;
             font-size: 1.1rem;
-            margin-bottom: 0.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -108,187 +115,154 @@
             font-size: 0.95rem;
             line-height: 1.6;
             padding: 0 1rem;
-        }
-        
-        .card-content ul {
-            padding-left: 20px;
+            margin-top: 0;
         }
         
         .card-content code {
             background-color: #e2e8f0;
             padding: 2px 6px;
             border-radius: 4px;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Fira Code', monospace;
         }
-
+        
+        .feature-card.active .card-header span:last-child { transform: rotate(180deg); }
         .feature-card.active .card-content {
-            max-height: 500px; /* Adjust as needed */
-            padding: 1rem;
-            border-top: 1px solid #eee;
+            max-height: 500px;
+            padding: 1rem 0 0 0;
+            border-top: 1px solid #e2e8f0;
             margin-top: 1rem;
         }
         
-        .feature-card.active .card-header span:last-child {
-            transform: rotate(180deg);
-        }
-
         .summary {
             margin-top: 3rem;
             padding: 1.5rem;
-            background-color: #fffbe6;
-            border: 2px solid #ffe58f;
+            background-color: #edf2f7;
+            border: 2px solid #cbd5e0;
             border-radius: 12px;
             text-align: left;
         }
-        
-        .summary h3 {
-            margin-top: 0;
-            font-size: 1.5rem;
-        }
 
-        @media (max-width: 768px) {
-            .comparison-grid {
-                grid-template-columns: 1fr;
-            }
-            h1 {
-                font-size: 2rem;
-            }
+        @media (max-width: 992px) {
+            .comparison-grid { grid-template-columns: 1fr; }
         }
-
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>React.js vs Next.js</h1>
-        <div class="comparison-grid">
-            <div class="framework-column react-col">
-                <h2>🦖 React.js</h2>
-                <div class="feature-card" onclick="toggleCard(this)">
-                    <div class="card-header"><span>Rendering</span><span>&#9660;</span></div>
-                    <div class="card-content"><strong>Client-Side Rendering (CSR)</strong> secara default. Artinya, browser mengunduh file JavaScript minimal, lalu JavaScript tersebut mengambil alih untuk merender seluruh halaman. Pengguna mungkin melihat halaman kosong sesaat.</div>
-                </div>
-                <div class="feature-card" onclick="toggleCard(this)">
-                    <div class="card-header"><span>Routing</span><span>&#9660;</span></div>
-                    <div class="card-content">Tidak ada bawaan. Kamu perlu menginstal dan mengkonfigurasi library tambahan seperti <strong>React Router</strong> untuk mengatur navigasi antar halaman di dalam aplikasi (Single Page Application).</div>
-                </div>
-                <div class="feature-card" onclick="toggleCard(this)">
-                    <div class="card-header"><span>Data Fetching</span><span>&#9660;</span></div>
-                    <div class="card-content">Dilakukan di sisi klien (browser). Biasanya menggunakan hook <code>useEffect</code> dan <code>fetch</code> API atau library seperti <strong>Axios</strong>. Data diambil setelah komponen di-render pertama kali.</div>
-                </div>
-                <div class="feature-card" onclick="toggleCard(this)">
-                    <div class="card-header"><span>SEO</span><span>&#9660;</span></div>
-                    <div class="card-content">Kurang optimal secara default. Karena konten di-render oleh JavaScript, mesin pencari seperti Google harus menjalankan JavaScript untuk mengindeks halaman, yang bisa lebih lambat dan kurang efektif.</div>
-                </div>
-            </div>
+<div class="container">
+    <h1>Bedah Kode: React vs Next</h1>
+    <p class="subtitle">Memahami perbedaan cara kerja dengan contoh nyata mengambil data dari API.</p>
+    
+    <div class="comparison-grid">
+        <div class="code-column">
+            <h2>🦖 React.js (Client-Side)</h2>
+            <p>Kode ini berjalan sepenuhnya di browser pengguna (client-side).</p>
             
-            <div class="framework-column next-col">
-                <h2>🚀 Next.js</h2>
-                <div class="feature-card" onclick="toggleCard(this)">
-                    <div class="card-header"><span>Rendering</span><span>&#9660;</span></div>
-                    <div class="card-content"><strong>Hybrid Rendering.</strong> Mendukung <strong>Server-Side Rendering (SSR)</strong> dan <strong>Static Site Generation (SSG)</strong> secara bawaan. Halaman HTML sudah jadi saat dikirim dari server, sehingga lebih cepat tampil dan bagus untuk SEO. Bisa juga CSR per komponen.</div>
-                </div>
-                <div class="feature-card" onclick="toggleCard(this)">
-                    <div class="card-header"><span>Routing</span><span>&#9660;</span></div>
-                    <div class="card-content"><strong>Sudah termasuk (built-in)</strong> dan berbasis file-system. Cukup buat file di dalam folder <code>/pages</code> atau <code>/app</code>, dan Next.js akan otomatis membuatkan rute untukmu. Sangat mudah dan cepat.</div>
-                </div>
-                <div class="feature-card" onclick="toggleCard(this)">
-                    <div class="card-header"><span>Data Fetching</span><span>&#9660;</span></div>
-                    <div class="card-content">Sangat fleksibel. Kamu bisa mengambil data di server sebelum halaman di-render (dengan <code>getServerSideProps</code> atau React Server Components) atau saat proses build (dengan <code>getStaticProps</code>). Ini membuat data sudah tersedia saat halaman dimuat.</div>
-                </div>
-                <div class="feature-card" onclick="toggleCard(this)">
-                    <div class="card-header"><span>SEO</span><span>&#9660;</span></div>
-                    <div class="card-content"><strong>Sangat SEO-friendly.</strong> Karena halaman sudah di-render di server (SSR/SSG), mesin pencari bisa langsung membaca konten HTML lengkap tanpa perlu menjalankan JavaScript. Ini adalah keunggulan utama Next.js.</div>
+            <h3>Contoh Kode</h3>
+            <pre><code class="language-jsx"></code></pre>
+            
+            <h3>Bedah Kode</h3>
+            <div class="feature-card" onclick="toggleCard(this)">
+                <div class="card-header"><span>State (useState)</span><span>&#9660;</span></div>
+                <div class="card-content">
+                    <code>useState</code> adalah sebuah "Hook" (fungsi khusus) dari React untuk memberikan <strong>memori</strong> pada komponen.
+                    <ul>
+                        <li><code>const [todos, setTodos] = useState([])</code> mendeklarasikan sebuah "state variable" bernama `todos`. Awalnya nilainya adalah array kosong `[]`.</li>
+                        <li>`todos` adalah data aktualnya. Kita tidak bisa mengubahnya secara langsung.</li>
+                        <li><code>setTodos</code> adalah satu-satunya fungsi yang bisa kita gunakan untuk memperbarui `todos`. Saat `setTodos` dipanggil, React tahu bahwa ada perubahan dan akan me-render ulang komponen ini dengan data baru.</li>
+                        <li>Kita juga punya state `loading` untuk melacak status pengambilan data.</li>
+                    </ul>
                 </div>
             </div>
-        </div>
-
-        <div class="summary">
-            <h3>💡 Kapan Pakai yang Mana?</h3>
-            <p>Gunakan <strong>React.js</strong> jika kamu membangun aplikasi web yang sangat interaktif dan tidak terlalu bergantung pada SEO, seperti dashboard internal atau aplikasi yang dilindungi login.</p>
-            <p>Gunakan <strong>Next.js</strong> jika kamu butuh performa load yang cepat, SEO yang kuat, atau keduanya. Sangat ideal untuk website publik seperti blog, situs e-commerce, dan landing page.</p>
+            <div class="feature-card" onclick="toggleCard(this)">
+                <div class="card-header"><span>Effect (useEffect)</span><span>&#9660;</span></div>
+                <div class="card-content">
+                    <code>useEffect</code> adalah Hook untuk menjalankan "efek samping" (side effects). Efek samping adalah segala sesuatu yang berinteraksi dengan dunia luar komponen, seperti mengambil data (fetch API), setting timer, atau memanipulasi DOM secara manual.
+                    <ul>
+                        <li>Kode di dalam <code>useEffect</code> akan berjalan <strong>setelah</strong> komponen pertama kali di-render ke layar.</li>
+                        <li>Tanda <code>[]</code> di akhir (dependency array) berarti: "jalankan efek ini hanya sekali saja, jangan diulangi di render berikutnya".</li>
+                        <li>Di sinilah kita melakukan `fetch` data dan kemudian memanggil `setTodos` dan `setLoading` setelah data diterima.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="feature-card" onclick="toggleCard(this)">
+                <div class="card-header"><span>Alur Kerja</span><span>&#9660;</span></div>
+                <div class="card-content">
+                    1. Komponen di-render, `todos` masih kosong, `loading` adalah `true`. Pengguna melihat "Loading...".<br>
+                    2. `useEffect` berjalan, memulai proses `fetch` data.<br>
+                    3. Data berhasil diambil dari API.<br>
+                    4. `setTodos(data)` dan `setLoading(false)` dipanggil.<br>
+                    5. React mendeteksi perubahan state dan <strong>me-render ulang</strong> komponen. Sekarang `loading` adalah `false` dan `todos` berisi data. Pengguna melihat daftar todo.
+                </div>
+            </div>
         </div>
         
-        <div class="code-explanation">
-            <h2 class="section-title">Bedah Kode: Bagaimana Halaman Ini Dibuat?</h2>
+        <div class="code-column">
+            <h2>🚀 Next.js (Server-Side)</h2>
+            <p>Kode ini (secara default) berjalan di server, bukan di browser.</p>
+
+            <h3>Contoh Kode</h3>
+            <pre><code class="language-jsx"></code></pre>
             
+            <h3>Bedah Kode</h3>
             <div class="feature-card" onclick="toggleCard(this)">
-                <div class="card-header">
-                    <span>🎨 CSS: Desain Visual & Styling</span>
-                    <span>&#9660;</span>
-                </div>
+                <div class="card-header"><span>Server Component</span><span>&#9660;</span></div>
                 <div class="card-content">
-                    Bagian CSS di dalam tag <code>&lt;style&gt;</code> bertanggung jawab atas semua tampilan visual halaman ini.
+                    Ini adalah **React Server Component (RSC)**, fitur modern di Next.js. Seluruh kode dalam fungsi `TodosPage` ini dieksekusi di <strong>server</strong>.
                     <ul>
-                        <li><code>@import url(...)</code>: Baris pertama ini mengimpor font 'Poppins' dari Google Fonts agar teks terlihat modern dan enak dibaca.</li>
-                        <li><code>body</code>: Mengatur dasar halaman, seperti warna latar belakang (<code>#f0f2f5</code>), jenis font, dan menggunakan Flexbox (<code>display: flex</code>) untuk menempatkan konten utama di tengah layar.</li>
-                        <li><code>.container</code>: Memberi area konten utama sebuah latar belakang putih, sudut tumpul (<code>border-radius</code>), dan bayangan (<code>box-shadow</code>) agar terlihat "melayang".</li>
-                        <li><code>.comparison-grid</code>: Ini adalah inti dari layout perbandingan. <code>display: grid</code> dan <code>grid-template-columns: 1fr 1fr</code> membaginya menjadi dua kolom yang sama lebarnya.</li>
-                        <li><code>.feature-card</code>: Ini adalah class untuk setiap kartu yang bisa diklik. Diberi bayangan, sudut tumpul, dan <code>cursor: pointer</code> agar pengguna tahu ini bisa diinteraksi.</li>
-                        <li><strong>Animasi Accordion</strong>: Triknya ada di sini.
-                            <ul>
-                                <li><code>.card-content</code> diberi <code>max-height: 0</code> dan <code>overflow: hidden</code>. Ini membuatnya "terlipat" atau tidak terlihat.</li>
-                                <li>Ketika JavaScript menambahkan class <code>.active</code> pada kartu, aturan <code>.feature-card.active .card-content</code> diterapkan. Aturan ini mengubah <code>max-height</code> menjadi nilai yang lebih besar (misal: <code>500px</code>), sehingga kontennya "terbuka".</li>
-                                <li><code>transition: max-height 0.5s ease-out</code> membuat perubahan tinggi ini berjalan mulus selama 0.5 detik, bukan terjadi tiba-tiba.</li>
-                            </ul>
-                        </li>
+                        <li>Browser pengguna tidak pernah melihat kode `fetch` atau proses pengambilan data. Browser hanya menerima hasil akhirnya: file HTML yang sudah jadi.</li>
+                        <li>Perhatikan kata kunci <code>async</code> di depan fungsi. Ini memungkinkan kita menggunakan `await` langsung di dalam komponen.</li>
                     </ul>
                 </div>
             </div>
-
             <div class="feature-card" onclick="toggleCard(this)">
-                <div class="card-header">
-                    <span>✨ JavaScript: Otak & Interaktivitas</span>
-                    <span>&#9660;</span>
-                </div>
+                <div class="card-header"><span>Tanpa State & Effect</span><span>&#9660;</span></div>
                 <div class="card-content">
-                    Kode JavaScript di dalam tag <code>&lt;script&gt;</code> sangat singkat namun powerful. Tujuannya hanya satu: mengelola buka-tutup kartu.
+                    Perhatikan apa yang <strong>tidak ada</strong> di kode ini:
                     <ul>
-                        <li><code>function toggleCard(cardElement)</code>: Ini adalah fungsi yang dipanggil setiap kali sebuah kartu diklik. <code>cardElement</code> adalah kartu spesifik yang baru saja diklik oleh pengguna.</li>
-                        <li><strong>Menutup Kartu Lain</strong>:
-                            <ul>
-                                <li><code>const column = cardElement.closest('.framework-column');</code>: Mencari "kolom induk" dari kartu yang diklik.</li>
-                                <li><code>const allCards = column.querySelectorAll('.feature-card');</code>: Mengambil semua kartu yang ada di dalam kolom tersebut.</li>
-                                <li><code>allCards.forEach(...)</code>: Loop ini memeriksa setiap kartu di dalam kolom. Jika ada kartu lain yang sedang terbuka (memiliki class <code>.active</code>) dan itu bukan kartu yang baru saja kita klik, maka class <code>.active</code>-nya dihapus, sehingga kartu itu tertutup. Ini memastikan hanya satu kartu yang bisa terbuka dalam satu waktu di setiap kolom.</li>
-                            </ul>
-                        </li>
-                        <li><code>cardElement.classList.toggle('active');</code>: Ini adalah perintah utamanya. <code>.toggle()</code> bekerja seperti saklar lampu. Jika kartu belum punya class <code>'active'</code>, ia akan menambahkannya. Jika sudah punya, ia akan menghapusnya. CSS kemudian merespons perubahan class ini untuk menampilkan atau menyembunyikan konten.</li>
+                        <li><strong>Tidak ada <code>useState</code></strong>. Kenapa? Karena komponen ini hanya di-render sekali di server untuk menghasilkan HTML. Tidak ada proses "render ulang" di browser, jadi tidak perlu memori atau state.</li>
+                        <li><strong>Tidak ada <code>useEffect</code></strong>. Kenapa? Karena kita tidak perlu menunggu komponen di-render untuk mengambil data. Kita mengambil data <strong>sebelum</strong> proses render HTML dimulai.</li>
+                        <li><strong>Tidak ada state `loading`</strong>. Kenapa? Karena saat pengguna menerima halaman, datanya sudah ada di dalamnya. Tidak ada fase "loading" sama sekali.</li>
                     </ul>
                 </div>
             </div>
-
+            <div class="feature-card" onclick="toggleCard(this)">
+                <div class="card-header"><span>Alur Kerja</span><span>&#9660;</span></div>
+                <div class="card-content">
+                    1. Pengguna meminta halaman `/todos`.<br>
+                    2. Server Next.js menjalankan fungsi `TodosPage`.<br>
+                    3. Server "berhenti sejenak" (<code>await</code>) untuk menjalankan `getTodos` dan mengambil data dari API.<br>
+                    4. Setelah data diterima, server melanjutkan eksekusi dan membuat file HTML lengkap yang sudah berisi daftar todo.<br>
+                    5. Server mengirimkan HTML yang sudah jadi ini ke browser pengguna.<br>
+                    6. Pengguna langsung melihat daftar todo tanpa melihat "Loading...".
+                </div>
+            </div>
         </div>
-
     </div>
+    
+    <div class="summary">
+        <h3>💡 Kesimpulan Utama</h3>
+        <p><strong>React.js (Client-Side)</strong>: Mengirim "resep" (JavaScript) ke browser. Browser kemudian harus bekerja (menjalankan resep, mengambil bahan/data, lalu memasak/merender UI). Proses ini fleksibel tapi membutuhkan waktu di sisi pengguna (ada fase loading).</p>
+        <p><strong>Next.js (Server-Side)</strong>: Bekerja seperti restoran. Server sudah "memasak" hidangan (HTML) di dapur (server). Pengguna hanya menerima hidangan yang sudah jadi dan siap santap. Proses ini jauh lebih cepat bagi pengguna dan lebih baik untuk SEO.</p>
+    </div>
+</div>
 
-    <script>
-        // JavaScript (Tidak ada perubahan dari sebelumnya, tetap sama)
-        function toggleCard(cardElement) {
-            // Menutup semua kartu lain di kolom yang sama agar hanya satu yang terbuka
-            const column = cardElement.closest('.framework-column');
-            if (column) { // Cek jika kartu berada di dalam kolom perbandingan
-                const allCards = column.querySelectorAll('.feature-card');
-                allCards.forEach(card => {
-                    if (card !== cardElement && card.classList.contains('active')) {
-                        card.classList.remove('active');
-                    }
-                });
-            } else { // Logika untuk kartu di luar grid (seperti bedah kode)
-                 const container = cardElement.closest('.code-explanation');
-                 if(container){
-                    const allCards = container.querySelectorAll('.feature-card');
-                    allCards.forEach(card => {
-                        if (card !== cardElement && card.classList.contains('active')) {
-                            card.classList.remove('active');
-                        }
-                    });
-                 }
-            }
-
-            // Toggle kartu yang diklik
-            cardElement.classList.toggle('active');
+<script>
+    function toggleCard(cardElement) {
+        const currentlyActive = cardElement.classList.contains('active');
+        
+        // Tutup semua kartu di kolom yang sama
+        const column = cardElement.closest('.code-column');
+        if (column) {
+            column.querySelectorAll('.feature-card').forEach(card => card.classList.remove('active'));
         }
-    </script>
+        
+        // Jika kartu yang diklik tidak aktif sebelumnya, buka sekarang
+        if (!currentlyActive) {
+            cardElement.classList.add('active');
+        }
+    }
+</script>
 
 </body>
 </html>
